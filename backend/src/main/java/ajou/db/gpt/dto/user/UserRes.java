@@ -14,9 +14,9 @@ public class UserRes {
     @NotEmpty
     private String id;
 
-    @Schema(description = "유저 pw", example = "1234")
+    @Schema(description = "이름", example = "테스트유저")
     @NotEmpty
-    private String password;
+    private String name;
 
     public static UserRes from(User entity) {
         return new UserRes(entity.getId(), entity.getName());
