@@ -32,8 +32,9 @@ public class AuthController {
     )
     @ApiResponses({
             @ApiResponse(description = "OK", responseCode = "200", content = @Content(schema = @Schema(implementation = LoginRes.class))),
-            @ApiResponse(description = "[2000] If id is invalid", responseCode = "401", content = @Content),
-            @ApiResponse(description = "[1503] If password is invalid", responseCode = "401", content = @Content)
+            @ApiResponse(description = "<p>[2000] If id is invalid" +
+                    "<p>[1503] If password is invalid",
+                    responseCode = "401", content = @Content),
     })
     @PostMapping("/login")
     public LoginRes login(@Valid @RequestBody LoginReq req) {
