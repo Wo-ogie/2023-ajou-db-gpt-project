@@ -1,6 +1,6 @@
 package ajou.db.gpt.exception.common;
 
-import com.zelusik.eatery.exception.CustomException;
+import ajou.db.gpt.exception.CustomException;
 import org.springframework.http.HttpStatus;
 
 public abstract class NotFoundException extends CustomException {

@@ -1,6 +1,6 @@
 package ajou.db.gpt.logger.aop;
 
-import com.zelusik.eatery.log.LogUtils;
+import ajou.db.gpt.logger.LogUtils;
 import lombok.Getter;
 import lombok.Setter;
 

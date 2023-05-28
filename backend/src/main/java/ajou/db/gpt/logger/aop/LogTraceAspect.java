@@ -13,9 +13,9 @@ public class LogTraceAspect {
 
     private final LogTrace logTrace;
 
-    @Around("com.zelusik.eatery.log.aop.Pointcuts.controllerPoint() || " +
-            "com.zelusik.eatery.log.aop.Pointcuts.servicePoint() || " +
-            "com.zelusik.eatery.log.aop.Pointcuts.repositoryPoint()")
+    @Around("ajou.db.gpt.logger.aop.Pointcuts.controllerPoint() || " +
+            "ajou.db.gpt.logger.aop.Pointcuts.servicePoint() || " +
+            "ajou.db.gpt.logger.aop.Pointcuts.repositoryPoint()")
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         TraceStatus status = null;
         try {

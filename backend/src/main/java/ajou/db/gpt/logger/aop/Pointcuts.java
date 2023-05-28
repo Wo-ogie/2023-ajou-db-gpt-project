@@ -4,12 +4,12 @@ import org.aspectj.lang.annotation.Pointcut;
 
 public class Pointcuts {
 
-    @Pointcut("execution(* com.zelusik.eatery.controller..*(..))")
+    @Pointcut("execution(* ajou.db.gpt.controller..*(..))")
     public void controllerPoint(){}
 
-    @Pointcut("execution(* com.zelusik.eatery.service..*(..))")
+    @Pointcut("execution(* ajou.db.gpt.service..*(..))")
     public void servicePoint(){}
 
-    @Pointcut("execution(* com.zelusik.eatery.repository..*(..))")
+    @Pointcut("execution(* ajou.db.gpt.repository..*(..))")
     public void repositoryPoint(){}
 }
