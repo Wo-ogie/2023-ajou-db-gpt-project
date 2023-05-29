@@ -1,6 +1,5 @@
-package ajou.db.gpt.controller;
+package ajou.db.gpt.dto.chat;
 
-import ajou.db.gpt.dto.chat.QuestionWithAnswerRes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
