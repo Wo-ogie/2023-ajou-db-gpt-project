@@ -1,6 +1,5 @@
 package ajou.db.gpt.dto.chat;
 
-import ajou.db.gpt.constant.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -8,6 +7,6 @@ import lombok.Getter;
 @Getter
 public class QuestionWithAnswerRes {
 
-    private QuestionRes question;
+    private QuestionWithMarkedStatusRes question;
     private String answer;
 }

@@ -7,6 +7,7 @@ import ajou.db.gpt.domain.Question;
 import ajou.db.gpt.domain.User;
 import ajou.db.gpt.dto.chat.QuestionRes;
 import ajou.db.gpt.dto.chat.QuestionWithAnswerRes;
+import ajou.db.gpt.dto.chat.QuestionWithMarkedStatusRes;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -92,9 +93,11 @@ public class QuestionRepositoryImpl implements QuestionRepository {
         MapSqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId);
 
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT q.question_id, q.category, q.content, a.content ");
+        sql.append("SELECT q.question_id, q.category, q.content, a.content, ");
+        sql.append("IF(b.bookmark_id is not null, true, false) AS is_marked ");
         sql.append("FROM question q ");
         sql.append("JOIN answer a on a.answer_id = q.answer_id ");
+        sql.append("LEFT JOIN bookmark b on q.question_id = b.question_id ");
         sql.append("WHERE q.user_id = :user_id ");
 
         if (category != null) {
@@ -117,10 +120,11 @@ public class QuestionRepositoryImpl implements QuestionRepository {
 
     private RowMapper<QuestionWithAnswerRes> qnaRowMapper() {
         return (rs, rowNum) -> new QuestionWithAnswerRes(
-                new QuestionRes(
+                new QuestionWithMarkedStatusRes(
                         rs.getInt("q.question_id"),
                         Category.valueOf(rs.getString("q.category")),
-                        rs.getString("q.content")
+                        rs.getString("q.content"),
+                        rs.getBoolean("is_marked")
                 ),
                 rs.getString("a.content")
         );
