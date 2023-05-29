@@ -5,7 +5,6 @@ import ajou.db.gpt.constant.SortCond;
 import ajou.db.gpt.domain.Answer;
 import ajou.db.gpt.domain.Question;
 import ajou.db.gpt.domain.User;
-import ajou.db.gpt.dto.chat.QuestionRes;
 import ajou.db.gpt.dto.chat.QuestionWithAnswerRes;
 import ajou.db.gpt.dto.chat.QuestionWithMarkedStatusRes;
 import org.springframework.jdbc.core.RowMapper;
@@ -89,7 +88,7 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     }
 
     @Override
-    public List<QuestionWithAnswerRes> searchQnAs(String userId, Category category, String keyword, SortCond sort) {
+    public List<QuestionWithAnswerRes> searchQnAs(String userId, Category category, String keyword, SortCond sort, Boolean onlyMarked) {
         MapSqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId);
 
         StringBuilder sql = new StringBuilder();
@@ -108,6 +107,11 @@ public class QuestionRepositoryImpl implements QuestionRepository {
         if (keyword != null && !keyword.isEmpty()) {
             sql.append("AND q.content LIKE :keyword ");
             param.addValue("keyword", "%" + keyword + "%");
+        }
+
+        if (onlyMarked) {
+            sql.append("GROUP BY q.question_id, q.category, q.content, q.created_at, a.content, is_marked ");
+            sql.append("HAVING is_marked = true ");
         }
 
         switch (sort) {

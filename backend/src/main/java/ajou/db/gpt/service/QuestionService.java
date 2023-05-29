@@ -28,7 +28,7 @@ public class QuestionService {
         return questionRepository.findById(questionId).orElseThrow(() -> new QuestionNotFoundByIdException(questionId));
     }
 
-    public List<QuestionWithAnswerRes> searchQnAs(String userId, Category category, String keyword, SortCond sort) {
-        return questionRepository.searchQnAs(userId, category, keyword, sort);
+    public List<QuestionWithAnswerRes> searchQnAs(String userId, Category category, String keyword, SortCond sort, Boolean onlyMarked) {
+        return questionRepository.searchQnAs(userId, category, keyword, sort, onlyMarked);
     }
 }

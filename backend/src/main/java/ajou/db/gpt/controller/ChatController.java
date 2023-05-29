@@ -49,8 +49,9 @@ public class ChatController {
             @AuthenticationPrincipal UserPrincipal userPrincipal,
             @Parameter(description = "필터링할 카테고리") @RequestParam(required = false) Category category,
             @Parameter(description = "검색 키워드", example = "Java") @RequestParam(required = false) String keyword,
-            @Parameter(description = "정렬 조건") @RequestParam(required = false, defaultValue = "LATEST") SortCond sort
+            @Parameter(description = "정렬 조건") @RequestParam(required = false, defaultValue = "LATEST") SortCond sort,
+            @Parameter(description = "북마크에 저장한 질문만 필터링해서 볼 것인지 여부", example = "false") @RequestParam(required = false, defaultValue = "false") Boolean onlyMarked
     ) {
-        return new ChatListRes(questionService.searchQnAs(userPrincipal.getUsername(), category, keyword, sort));
+        return new ChatListRes(questionService.searchQnAs(userPrincipal.getUsername(), category, keyword, sort, onlyMarked));
     }
 }

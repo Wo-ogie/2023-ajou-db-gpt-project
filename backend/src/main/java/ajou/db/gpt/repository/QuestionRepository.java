@@ -14,5 +14,5 @@ public interface QuestionRepository {
 
     Optional<Question> findById(Integer id);
 
-    List<QuestionWithAnswerRes> searchQnAs(String userId, Category category, String keyword, SortCond sort);
+    List<QuestionWithAnswerRes> searchQnAs(String userId, Category category, String keyword, SortCond sort, Boolean onlyMarked);
 }
