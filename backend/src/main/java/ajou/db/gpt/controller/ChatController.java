@@ -6,6 +6,7 @@ import ajou.db.gpt.dto.chat.ChatReq;
 import ajou.db.gpt.dto.chat.ChatRes;
 import ajou.db.gpt.security.UserPrincipal;
 import ajou.db.gpt.service.ChatService;
+import ajou.db.gpt.service.QuestionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class ChatController {
 
     private final ChatService chatService;
+    private final QuestionService questionService;
 
     @Operation(
             summary = "채팅",
@@ -48,6 +50,6 @@ public class ChatController {
             @Parameter(description = "검색 키워드", example = "Java") @RequestParam(required = false) String keyword,
             @Parameter(description = "정렬 조건") @RequestParam(required = false, defaultValue = "LATEST") SortCond sort
     ) {
-        return new ChatListRes(chatService.searchQnAs(userPrincipal.getUsername(), category, keyword, sort));
+        return new ChatListRes(questionService.searchQnAs(userPrincipal.getUsername(), category, keyword, sort));
     }
 }

@@ -10,9 +10,4 @@ public class QuestionWithAnswerRes {
 
     private QuestionRes question;
     private String answer;
-
-    public QuestionWithAnswerRes(Category category, String content, String answer) {
-        this.question = new QuestionRes(category, content);
-        this.answer = answer;
-    }
 }

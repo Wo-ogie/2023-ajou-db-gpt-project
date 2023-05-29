@@ -11,10 +11,18 @@ public class Bookmark extends BaseTimeEntity {
     private User user;
     private Question question;
 
+    public Bookmark(User user, Question question) {
+        this(null, user, question, null);
+    }
+
     public Bookmark(Integer id, User user, Question question, LocalDateTime createdAt) {
         super(createdAt);
         this.id = id;
         this.user = user;
         this.question = question;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

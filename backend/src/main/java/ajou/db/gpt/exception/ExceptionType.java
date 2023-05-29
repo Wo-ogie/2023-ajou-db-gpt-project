@@ -1,9 +1,13 @@
 package ajou.db.gpt.exception;
 
 import ajou.db.gpt.constant.exception.ValidationErrorCode;
+import ajou.db.gpt.domain.Bookmark;
+import ajou.db.gpt.domain.Question;
 import ajou.db.gpt.domain.User;
 import ajou.db.gpt.exception.auth.PasswordNotValidException;
 import ajou.db.gpt.exception.auth.TokenValidateException;
+import ajou.db.gpt.exception.bookmark.DuplicateBookmarkException;
+import ajou.db.gpt.exception.question.QuestionNotFoundByIdException;
 import ajou.db.gpt.exception.user.UserNotFoundByIdException;
 import ajou.db.gpt.logger.LogUtils;
 import jakarta.validation.ConstraintViolationException;
@@ -76,6 +80,16 @@ public enum ExceptionType {
      * 유저({@link User}) 관련 예외
      */
     USER_NOT_FOUND_BY_ID(2000, "회원을 찾을 수 없습니다. 유효하지 않은 id입니다.", UserNotFoundByIdException.class),
+
+    /**
+     * 질문({@link Question}) 관련 예외
+     */
+    QUESTION_NOT_FOUND_BY_ID(2500, "질문 기록을 찾을 수 없습니다. 유효하지 않은 id입니다.", QuestionNotFoundByIdException.class),
+
+    /**
+     * 북마크({@link Bookmark}) 관련 예외
+     */
+    DUPLICATE_BOOKMARK(3000, "이미 저장한 질문입니다.", DuplicateBookmarkException.class),
     ;
 
     private final Integer code;
