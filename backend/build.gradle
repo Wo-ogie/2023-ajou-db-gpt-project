@@ -25,6 +25,10 @@ dependencies {
     // Spring MVC
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // JSON and Gson for parse String in format JSON
+    implementation 'org.json:json:20230227'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
     // Spring Data JDBC
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 
