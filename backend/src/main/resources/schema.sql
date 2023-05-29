@@ -25,7 +25,6 @@ CREATE TABLE question
     content     VARCHAR(10000) NOT NULL,
     created_at  DATETIME(6)    NOT NULL,
     PRIMARY KEY (question_id),
-    UNIQUE (user_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (answer_id) REFERENCES answer (answer_id)
 );
@@ -37,7 +36,6 @@ CREATE TABLE bookmark
     question_id INT         NOT NULL,
     created_at  DATETIME(6) NOT NULL,
     PRIMARY KEY (bookmark_id),
-    UNIQUE (user_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (question_id) REFERENCES question (question_id)
 );
