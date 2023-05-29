@@ -2,6 +2,7 @@ package ajou.db.gpt.controller;
 
 import ajou.db.gpt.constant.Category;
 import ajou.db.gpt.constant.SortCond;
+import ajou.db.gpt.dto.chat.ChatListRes;
 import ajou.db.gpt.dto.chat.ChatReq;
 import ajou.db.gpt.dto.chat.ChatRes;
 import ajou.db.gpt.security.UserPrincipal;
