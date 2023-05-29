@@ -52,4 +52,15 @@ public class BookmarkRepositoryImpl implements BookmarkRepository {
         Integer count = template.queryForObject(sql, param, Integer.class);
         return count != null && count > 0;
     }
+
+    @Override
+    public void deleteByUserIdAndQuestionId(String userId, Integer questionId) {
+        String sql = "DELETE FROM bookmark " +
+                "WHERE user_id = :user_id AND question_id = :question_id";
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("user_id", userId)
+                .addValue("question_id", questionId);
+
+        template.update(sql, param);
+    }
 }

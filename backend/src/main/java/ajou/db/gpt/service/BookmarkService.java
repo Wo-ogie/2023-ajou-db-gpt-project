@@ -3,6 +3,7 @@ package ajou.db.gpt.service;
 import ajou.db.gpt.domain.Bookmark;
 import ajou.db.gpt.domain.Question;
 import ajou.db.gpt.domain.User;
+import ajou.db.gpt.exception.bookmark.BookmarkNotFoundException;
 import ajou.db.gpt.exception.bookmark.DuplicateBookmarkException;
 import ajou.db.gpt.repository.BookmarkRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,13 @@ public class BookmarkService {
         }
 
         return bookmarkRepository.save(new Bookmark(user, question));
+    }
+
+    @Transactional
+    public void delete(String userId, Integer questionId) {
+        if (!bookmarkRepository.existsByUserIdAndQuestionId(userId, questionId)) {
+            throw new BookmarkNotFoundException();
+        }
+        bookmarkRepository.deleteByUserIdAndQuestionId(userId, questionId);
     }
 }

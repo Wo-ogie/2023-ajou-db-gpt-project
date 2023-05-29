@@ -6,6 +6,7 @@ import ajou.db.gpt.domain.Question;
 import ajou.db.gpt.domain.User;
 import ajou.db.gpt.exception.auth.PasswordNotValidException;
 import ajou.db.gpt.exception.auth.TokenValidateException;
+import ajou.db.gpt.exception.bookmark.BookmarkNotFoundException;
 import ajou.db.gpt.exception.bookmark.DuplicateBookmarkException;
 import ajou.db.gpt.exception.question.QuestionNotFoundByIdException;
 import ajou.db.gpt.exception.user.UserNotFoundByIdException;
@@ -90,6 +91,7 @@ public enum ExceptionType {
      * 북마크({@link Bookmark}) 관련 예외
      */
     DUPLICATE_BOOKMARK(3000, "이미 저장한 질문입니다.", DuplicateBookmarkException.class),
+    BOOKMARK_NOT_FOUND(3001, "북마크 이력을 찾을 수 없습니다.", BookmarkNotFoundException.class),
     ;
 
     private final Integer code;

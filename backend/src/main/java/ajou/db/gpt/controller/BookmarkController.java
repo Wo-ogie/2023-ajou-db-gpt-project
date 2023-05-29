@@ -10,10 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -39,5 +36,18 @@ public class BookmarkController {
         return ResponseEntity
                 .created(URI.create("/api/bookmarks/" + bookmark.getId()))
                 .body(BookmarkRes.from(bookmark));
+    }
+
+    @Operation(
+            summary = "질문 북마크 취소",
+            description = "저장했던 질문을 북마크에서 삭제한다.",
+            security = @SecurityRequirement(name = "access-token")
+    )
+    @DeleteMapping("/questions/{questionId}")
+    public void cancelQuestionBookmark(
+            @AuthenticationPrincipal UserPrincipal userPrincipal,
+            @PathVariable Integer questionId
+    ) {
+        bookmarkService.delete(userPrincipal.getUsername(), questionId);
     }
 }
