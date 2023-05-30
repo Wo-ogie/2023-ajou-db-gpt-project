@@ -7,6 +7,7 @@ import ajou.db.gpt.domain.Question;
 import ajou.db.gpt.domain.User;
 import ajou.db.gpt.dto.chat.ChatRes;
 import ajou.db.gpt.dto.chat.GptRes;
+import ajou.db.gpt.dto.chat.QuestionRes;
 import ajou.db.gpt.repository.AnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,6 @@ public class ChatService {
         Answer answer = answerRepository.save(new Answer(chatRes.getAnswer()));
         Question question = questionService.save(new Question(user, answer, category, content));
 
-        return new ChatRes(question.getContent(), answer.getContent());
+        return new ChatRes(QuestionRes.from(question), answer.getContent());
     }
 }
