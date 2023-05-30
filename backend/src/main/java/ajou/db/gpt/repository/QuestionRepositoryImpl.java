@@ -105,7 +105,7 @@ public class QuestionRepositoryImpl implements QuestionRepository {
         }
 
         if (keyword != null && !keyword.isEmpty()) {
-            sql.append("AND q.content LIKE :keyword ");
+            sql.append("AND (q.content LIKE :keyword OR a.content LIKE :keyword) ");
             param.addValue("keyword", "%" + keyword + "%");
         }
 
