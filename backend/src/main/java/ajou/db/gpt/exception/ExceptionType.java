@@ -99,14 +99,14 @@ public enum ExceptionType {
     private final Class<? extends Exception> type;
 
     public static Optional<ExceptionType> from(Class<? extends Exception> classType) {
-        Optional<ExceptionType> exceptionType = Arrays.stream(values())
-                .filter(ex -> ex.getType() != null && ex.getType().equals(classType))
+        Optional<ExceptionType> exType = Arrays.stream(values())
+                .filter(ex -> ex.getType() != null && ex.getType().isAssignableFrom(classType))
                 .findFirst();
 
-        if (exceptionType.isEmpty()) {
+        if (exType.isEmpty()) {
             log.error("[{}] 정의되지 않은 exception이 발생하였습니다. Type of exception={}", LogUtils.getLogTraceId(), classType);
         }
 
-        return exceptionType;
+        return exType;
     }
 }
