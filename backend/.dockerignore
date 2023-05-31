@@ -1,0 +1,9 @@
+.idea/
+*.iml
+*.iws
+target/
+.sonar/
+.sonarlint
+.gradle
+.idea
+build
