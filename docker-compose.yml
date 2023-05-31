@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  backend:
+    platform: linux/amd64
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    image: siwall0105/ajou-db-gpt-back
+    container_name: gpt_back
+    ports:
+      - "8080:8080"
+
+  frontend:
+    platform: linux/amd64
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: siwall0105/ajou-db-gpt-front
+    container_name: gpt-front
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend
+
