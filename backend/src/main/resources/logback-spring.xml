@@ -4,9 +4,7 @@
     <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
 
     <property name="LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss:sss} %highlight(%-5level) [%-15.15thread] %green(%-40.40logger{26}) : %msg%n"/>
-    <property name="PROD_LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss:sss} %-5level [%-15.15thread] %-40.40logger{26} : %msg%n"/>
+              value="%d{yyyy-MM-dd HH:mm:ss} %highlight(%-5level) [%-15.15thread] %green(%-40.40logger{26}) : %msg%n"/>
 
     <springProfile name="!prod">
         <include resource="console-appender.xml"/>

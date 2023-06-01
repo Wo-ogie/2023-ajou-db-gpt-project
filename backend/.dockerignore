@@ -1,9 +1,7 @@
 .idea/
-*.iml
-*.iws
-target/
-.sonar/
-.sonarlint
 .gradle
-.idea
-build
+# *.iml
+# *.iws
+# target/
+# .sonar/
+# .sonarlint

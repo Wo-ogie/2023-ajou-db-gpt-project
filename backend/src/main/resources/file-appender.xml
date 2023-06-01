@@ -1,12 +1,11 @@
 <included>
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <file>./log/${BY_DATE}.log</file>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/spring/log/${BY_DATE}.log</file>
         <encoder>
-            <charet>utf8</charet>
-            <pattern>${PROD_LOG_PATTERN}</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>./backup/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>/spring/backup/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>100MB</maxFileSize>
             <maxHistory>30</maxHistory>
             <totalSizeCap>3GB</totalSizeCap>

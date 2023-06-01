@@ -6,9 +6,11 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     image: siwall0105/ajou-db-gpt-back
-    container_name: gpt_back
+    container_name: gpt-back
     ports:
       - "8080:8080"
+    volumes:
+      - ./log:/spring/log
 
   frontend:
     platform: linux/amd64
