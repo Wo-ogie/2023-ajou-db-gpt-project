@@ -19,4 +19,10 @@ public class LoginRes {
 
     @Schema(description = "Access token 만료 시각", example = "2023-02-28T17:13:55.473")
     private LocalDateTime accessTokenExpiresAt;
+
+    @Schema(description = "Refresh token", example = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlJPTEVfVVNFUiIsImxvZ2luVHlwZSI6IktBS0FPIiwiaWF0IjoxNjc3NDg0NzExLCJleHAiOjE2Nzc1Mjc5MTF9.eM2R_mMRqkPUsMmJN_vm2lAsIGownPJZ6Xu47K6ujrI")
+    private String refreshToken;
+
+    @Schema(description = "Refresh token 만료 시각", example = "2023-02-28T17:13:55.473")
+    private LocalDateTime refreshTokenExpiresAt;
 }

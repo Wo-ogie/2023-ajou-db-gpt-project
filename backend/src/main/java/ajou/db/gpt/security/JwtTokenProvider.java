@@ -35,6 +35,7 @@ public class JwtTokenProvider {
     private static final long HOUR = 60 * MINUTE;
     private static final long DAY = 24 * HOUR;
     private static final long ACCESS_TOKEN_EXPIRED_DURATION = 7 * DAY; // Access token 만료시간 : 일주일
+    public static final long REFRESH_TOKEN_EXPIRED_DURATION = 30 * DAY; // Refresh token 만료시간 : 한 달
 
     private static final String TOKEN_TYPE_BEARER = "Bearer ";
 
@@ -60,6 +61,10 @@ public class JwtTokenProvider {
      */
     public JwtTokenInfoDto createAccessToken(String userId) {
         return createJwtToken(userId, RoleType.USER, ACCESS_TOKEN_EXPIRED_DURATION);
+    }
+
+    public JwtTokenInfoDto createRefreshToken(String userId) {
+        return createJwtToken(userId, RoleType.USER, REFRESH_TOKEN_EXPIRED_DURATION);
     }
 
     /**
@@ -128,7 +133,7 @@ public class JwtTokenProvider {
                 .setExpiration(expiresAt)
                 .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact();
-        return JwtTokenInfoDto.of(token, new Timestamp(expiresAt.getTime()).toLocalDateTime());
+        return new JwtTokenInfoDto(token, new Timestamp(expiresAt.getTime()).toLocalDateTime());
     }
 
     /**
