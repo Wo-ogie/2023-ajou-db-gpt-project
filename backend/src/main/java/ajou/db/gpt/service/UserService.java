@@ -5,6 +5,7 @@ import ajou.db.gpt.dto.user.UserCreateReq;
 import ajou.db.gpt.exception.user.UserNotFoundByIdException;
 import ajou.db.gpt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Cacheable(value = "user", key = "#id", cacheManager = "cacheManager")
     public User findById(String id) {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundByIdException(id));
     }
