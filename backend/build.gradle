@@ -65,6 +65,9 @@ dependencies {
 
     // Spring Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Jackson Datatype JSR-310 for object mapper serialize
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.15.2'
 }
 
 tasks.named('test') {
