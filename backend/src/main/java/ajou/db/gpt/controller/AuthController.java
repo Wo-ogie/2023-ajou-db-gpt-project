@@ -2,6 +2,8 @@ package ajou.db.gpt.controller;
 
 import ajou.db.gpt.dto.auth.LoginReq;
 import ajou.db.gpt.dto.auth.LoginRes;
+import ajou.db.gpt.dto.auth.request.TokenRefreshRequest;
+import ajou.db.gpt.dto.auth.response.TokenResponse;
 import ajou.db.gpt.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,10 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "인증")
 @RequiredArgsConstructor
@@ -39,5 +38,18 @@ public class AuthController {
     @PostMapping("/login")
     public LoginRes login(@Valid @RequestBody LoginReq req) {
         return authService.login(req.getId(), req.getPassword());
+    }
+
+    @Operation(
+            summary = "토큰 갱신하기",
+            description = "<p>기존 발급받은 refresh token으로 새로운 access token과 refresh token을 발급 받습니다."
+    )
+    @ApiResponses({
+            @ApiResponse(description = "OK", responseCode = "200", content = @Content(schema = @Schema(implementation = TokenResponse.class))),
+            @ApiResponse(description = "[1502] 유효하지 않은 token으로 요청한 경우. Token 값이 잘못되었거나 만료되어 유효하지 않은 경우로 token 갱신 필요", responseCode = "401", content = @Content),
+    })
+    @PostMapping("/tokens")
+    public TokenResponse tokenRefresh(@Valid @RequestBody TokenRefreshRequest request) {
+        return authService.refresh(request.getRefreshToken());
     }
 }
