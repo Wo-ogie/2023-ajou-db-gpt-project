@@ -1,4 +1,4 @@
-package ajou.db.gpt.config;
+package ajou.db.gpt.service;
 
 import ajou.db.gpt.dto.chat.GptRes;
 import ajou.db.gpt.service.HttpRequestService;

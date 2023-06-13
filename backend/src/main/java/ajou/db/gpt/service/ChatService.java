@@ -1,6 +1,5 @@
 package ajou.db.gpt.service;
 
-import ajou.db.gpt.config.OpenAIService;
 import ajou.db.gpt.constant.Category;
 import ajou.db.gpt.domain.Answer;
 import ajou.db.gpt.domain.Question;
